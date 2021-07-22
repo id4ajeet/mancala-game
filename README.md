@@ -1,7 +1,5 @@
 # Mancala Game
 
-[[_TOC_]]
-
 A web based Mancala or Kalaha game.
 
 ## Rules
