@@ -13,7 +13,7 @@
         <appender-ref ref="Console"/>
     </root>
 
-    <logger name="com.bol" level="info" additivity="false">
+    <logger name="com.game" level="info" additivity="false">
         <appender-ref ref="Console"/>
     </logger>
 
