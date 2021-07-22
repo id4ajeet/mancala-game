@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{game.title}"/>
+    <link th:href="@{/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<form action="/play" method="post">
+    <table class="myTable" aria-hidden="true">
+        <tr>
+            <th colspan="8" id="game-id">
+                <span>Game ID: </span><span th:text="${game.getGameId()}"></span>
+                <input type="hidden" th:value="${game.getGameId()}" th:name="gameId"/>
+            </th>
+        </tr>
+        <tr>
+            <td><span th:text="${game.getPlayerOneName()}"></span></td>
+            <td th:each="index : ${#numbers.sequence(6,1,-1)}">
+                <input type="radio" th:name="pitId" th:value="${index}"/>
+            </td>
+            <td style="border-bottom-width: 0">&#8592;</td>
+        </tr>
+        <tr>
+            <td rowspan="2" style="border-bottom-width: 0">
+                <span th:text="${game.getPit(7).getStones()}"></span>
+            </td>
+
+            <td th:each="index : ${#numbers.sequence(6,1,-1)}">
+                <span th:text="${game.getPit(index).getStones()}"></span>
+            </td>
+            <td rowspan="2" style="border-top-width: 0">
+                <span th:text="${game.getPit(14).getStones()}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td th:each="index : ${#numbers.sequence(8,13,1)}">
+                <span th:text="${game.getPit(index).getStones()}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top-width: 0">&#8594;</td>
+            <td th:each="index : ${#numbers.sequence(8,13,1)}">
+                <input type="radio" th:name="pitId" th:value="${index}"/>
+            </td>
+            <td><span th:text="${game.getPlayerTwoName()}"></span></td>
+        </tr>
+        <tr th:if="${game.getStatus().name() == 'IN_PROGRESS'}">
+            <td style="border-right-width: 0"></td>
+            <td colspan="4" style="border-right-width: 0;border-left-width: 0"><span>Current Turn: </span><span
+                    th:text="${game.getCurrentPlayer()}"></span></td>
+            <td colspan="2" style="border-right-width: 0;border-left-width: 0"><input type="submit" value="Go"/></td>
+            <td style="border-left-width: 0"></td>
+        </tr>
+        <tr th:if="${game.getStatus().name() == 'DRAW'}">
+            <td colspan="8">Game status - DRAW</td>
+        </tr>
+        <tr th:if="${game.getStatus().name() == 'WON'}">
+            <td colspan="8">Game won by - <span th:text="${game.getWinner()}"></span></td>
+        </tr>
+    </table>
+</form>
+
+<table aria-hidden="true" style="font-family: 'Raleway', sans-serif;font-size: 16px; font-weight: 600;">
+    <tr>
+        <th colspan="3" id="options"></th>
+    </tr>
+    <tr>
+        <td>
+            Options -
+        </td>
+        <td>
+            <form action="/reset" method="post">
+                <input type="hidden" th:value="${game.getGameId()}" th:name="gameId"/>
+                <input type="submit" value="Reset Game"/>
+            </form>
+        </td>
+        <td>
+            <form action="/end" method="post">
+                <input type="hidden" th:value="${game.getGameId()}" th:name="gameId"/>
+                <input type="submit" value="Exit Game"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mancala Game</title>
+    <link href="/style.css" rel="stylesheet"/>
+</head>
+<body>
+<form action="/start" method="post">
+    <table aria-hidden="true">
+        <tr>
+            <th colspan="2" id="title">
+                <h2><span>Mancala Game</span></h2>
+            </th>
+        </tr>
+        <tr>
+            <td><label>Player1 Name</label></td>
+            <td><input type="text" name="playerOneName"/></td>
+        </tr>
+        <tr>
+            <td><label>Player2 Name</label></td>
+            <td><input type="text" name="playerTwoName"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><h3> OR </h3></td>
+        </tr>
+        <tr>
+            <td><label>Existing GameId</label></td>
+            <td><input type="text" name="gameId"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Start"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
